@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div id="app">
+    <el-container style="height: 500px;">
+      <el-aside width="200px" id="main">
+        <el-menu default-active="1" @select="handleSelect" class="el-menu-demo">
+          <el-menu-item index="1">环境信息</el-menu-item>
+          <el-menu-item index="2">绿区</el-menu-item>
+          <el-menu-item index="3">黄区</el-menu-item>
+          <el-menu-item index="4">蓝区</el-menu-item>
+        </el-menu>
+      </el-aside>
+
+    <el-container>
+      <!--el-header id="app">
+        <el-row :gutter=10>
+        <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
+          <div class="grid-content bg-purple-light">
+          </div>
+        </el-col>
+        <el-col :xs="16" :sm="16" :md="16" :lg="16" :xl="16">
+          <div class="grid-content bg-purple">
+          </div>
+        </el-col>
+        <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
+          <div class="grid-content bg-purple-light">
+          </div>
+        </el-col>
+        </el-row>
+      </el-header-->
+      <el-main id="table">
+        Main
+          <el-table :data="tableData">
+            <el-table-column prop="osIP" label="OS IP" width="180">
+            </el-table-column>
+            <el-table-column prop="ibmcIP" label="iBMC IP" width="180">
+            </el-table-column>
+            <el-table-column prop="name" label="使用者">
+            </el-table-column>
+          </el-table>
+       </el-main>
+    </el-container>
+    </el-container>
+  </div>
+
+
+  <div id="app">
+    {{ message }}<br>
+    {{ name }}
+  </div>
+  <div id="app-2">
+    <span v-bind:title="message">
+      鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+  </div>
+  <div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+  </div>
+  <div id="app-4">
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+  </div>
+  <div id="app-5">
+    <p>{{ message }}</p>
+    <!--button v-on:click="reverseMessage">反转消息</button-->
+    <el-button @click="reverseMessage">Reverse Message</el-button>
+  </div>
+  <div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+  <div id="app-7">
+    <ol>
+      <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+    </ol>
+  </div>
+</body>
+
+<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="index.js"></script>
+<script type="text/javascript">
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+  })
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello Vue!",
+      name: "ZwZ"
+    }
+  })
+  var app2 = new Vue({
+    el: "#app-2",
+    data: {
+      message: "页面加载于 " + new Date().toLocaleDateString()
+    }
+  })
+  var app3 = new Vue({
+    el: '#app-3',
+    data: {
+      seen: true
+    }
+  })
+  var app4 = new Vue({
+    el: '#app-4',
+    data: {
+      todos: [{
+          text: 'Learning JavaScript'
+        },
+        {
+          text: 'Learning Vue'
+        },
+        {
+          text: 'Complete a fancy project'
+        }
+      ]
+    }
+  })
+  var app5 = new Vue({
+    el: '#app-5',
+    data: {
+      message: 'Hello Vue.js!'
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  })
+  var app6 = new Vue({
+    el: '#app-6',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
+  var app7 = new Vue({
+    el: "#app-7",
+    data: {
+      groceryList: [{
+          id: 0,
+          text: 'Vegetable'
+        },
+        {
+          id: 1,
+          text: 'Cheese'
+        },
+        {
+          id: 2,
+          text: 'Anything else'
+        },
+      ]
+    }
+  })
+  var Main = new Vue({
+    el: "#main",
+    data() {
+      return {
+        activeIndex: '1'
+      };
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  })
+  var Table = new Vue({
+    el: "#table",
+    data() {
+      return {
+        tableData: [{
+          osIP: '192.168.0.1',
+          ibmcIP: '192.168.0.1',
+          name: '张炜卓'
+        }, {
+          osIP: '192.168.0.1',
+          ibmcIP: '192.168.0.1',
+          name: '张炜卓'
+        }, {
+          osIP: '192.168.0.1',
+          ibmcIP: '192.168.0.1',
+          name: '张炜卓'
+        }, {
+          osIP: '192.168.0.1',
+          ibmcIP: '192.168.0.1',
+          name: '张炜卓'
+        }, {
+          osIP: '192.168.0.1',
+          ibmcIP: '192.168.0.1',
+          name: '张炜卓'
+        }]
+      }
+    },
+  })
+</script>
+
+<style>
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+</style>
+</html>
